@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>Upload Files using XMLHttpRequest - Minimal</title>
-
+    <script src="lib/sweet-alert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="lib/sweet-alert.css">
     <script type="text/javascript">
       function fileSelected() {
         var file = document.getElementById('fileToUpload').files[0];
@@ -43,15 +44,15 @@
 
       function uploadComplete(evt) {
         /* This event is raised when the server send back a response */
-        alert(evt.target.responseText);
+        swal(evt.target.responseText,"" ,"success");
       }
 
       function uploadFailed(evt) {
-        alert("There was an error attempting to upload the file.");
+        swal("There was an error attempting to upload the file.", "error");
       }
 
       function uploadCanceled(evt) {
-        alert("The upload has been canceled by the user or the browser dropped the connection.");
+        swal("The upload has been canceled by the user or the browser dropped the connection.");
       }
     </script>
 </head>

@@ -3,7 +3,18 @@ from bottle import route, request, static_file, run
 
 @route('/')
 def root():
-    return static_file('web/main.html', root='.')
+    return static_file('main.html', root='./web')
+
+@route('/<filename:path>')
+def send_static(filename):
+    filename = filename
+    if os.path.isfile('./web/'+filename):
+        return static_file(filename, root='./web')
+    else:
+        filename = filename+'/index.html'
+        if os.path.isfile('./web/'+filename):
+            return static_file(filename, root='./web')
+    return ''
 
 @route('/upload', method='POST')
 def do_upload():
